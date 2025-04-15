@@ -6,10 +6,13 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
 import { LogOut } from 'lucide-react'
+import useSound from 'use-sound'
+import { usePreferences } from '@/store/usePreferences'
 
 const SideBar = ({ isCollapsed }: { isCollapsed: boolean }) => {
     const selectedUser = USERS[0]
-
+	const [playClickSound]=useSound("/sounds/mouse-click.mp3")
+	const {soundEnabled}=usePreferences()
     return (
         <div className='group relative flex flex-col h-full gap-4 p-2 data-[collapsed=true]:p-2  max-h-full overflow-auto bg-background'>
         {!isCollapsed && (
@@ -28,7 +31,7 @@ const SideBar = ({ isCollapsed }: { isCollapsed: boolean }) => {
 								<TooltipTrigger asChild>
 									<div
 										onClick={() => {
-											// soundEnabled && playClickSound();
+											soundEnabled && playClickSound();
 											// setSelectedUser(user);
 										}}
 									>
@@ -59,7 +62,7 @@ const SideBar = ({ isCollapsed }: { isCollapsed: boolean }) => {
 									"dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white shrink"
 							)}
 							onClick={() => {
-								// soundEnabled && playClickSound();
+								soundEnabled && playClickSound();
 								// setSelectedUser(user);
 							}}
 						>
