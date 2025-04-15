@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import TankStackProvider from "@/components/providers/TanStackProvider";
 
 
 
@@ -18,14 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body >
-      <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+      <ThemeProvider  attribute="class" defaultTheme="system"  enableSystem disableTransitionOnChange>
+           <TankStackProvider>
             {children}
-          </ThemeProvider>
+           </TankStackProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
