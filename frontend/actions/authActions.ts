@@ -20,7 +20,9 @@ export const checkAuthStatus = async () => {
     await redis.hset(userId, {
       id: user.id,
       email: user.email,
-      name: `${user.given_name} ${user.family_name}`,
+      name: user.family_name
+        ? `${user.given_name} ${user.family_name}`
+        : user.given_name,
       image,
       isActive: true, // 👈 new field here
     });
