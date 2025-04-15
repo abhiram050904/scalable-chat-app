@@ -3,7 +3,7 @@ import React from 'react'
 import img1 from '../../public/redis-logo.svg'
 import img2 from '../../public/logo.png'
 import img3 from '../../public/hero-right.png'
-import AuthButtons from '@/components/ui/auth/AuthButtons'
+import AuthButtons from '@/components/auth/AuthButtons'
 const page = () => {
   return (
     <div className='flex h-screen w-full'>
