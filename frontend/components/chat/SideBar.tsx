@@ -20,7 +20,6 @@ import { usePreferences } from '@/store/usePreferences'
 import { useSelectedUser } from '@/store/UseSelectedUser'
 import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components'
 import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
-import { redis } from '@/lib/db'
 import { setActiveStatusOffline } from '@/actions/authActions'
 
 const SideBar = ({
@@ -35,9 +34,8 @@ const SideBar = ({
 	const { setSelectedUser, selectedUser } = useSelectedUser()
 	const { user } = useKindeBrowserClient()
 
-
 	const handleLogout = async () => {
-		if(user){
+		if (user) {
 			await setActiveStatusOffline(user.id)
 		}
 	}
@@ -71,7 +69,9 @@ const SideBar = ({
 													alt='User Image'
 													className='border-2 border-white rounded-full w-10 h-10'
 												/>
-												<AvatarFallback>{user.name[0]}</AvatarFallback>
+												<AvatarFallback>
+													{user?.name?.[0] ?? 'U'}
+												</AvatarFallback>
 											</Avatar>
 											<span
 												className={cn(
@@ -110,10 +110,12 @@ const SideBar = ({
 								<Avatar className='flex justify-center items-center'>
 									<AvatarImage
 										src={user.image || '/user-placeholder.png'}
-										alt={'User image'}
+										alt='User image'
 										className='w-10 h-10'
 									/>
-									<AvatarFallback>{user.name[0]}</AvatarFallback>
+									<AvatarFallback>
+										{user?.name?.[0] ?? 'U'}
+									</AvatarFallback>
 								</Avatar>
 								<span
 									className={cn(
